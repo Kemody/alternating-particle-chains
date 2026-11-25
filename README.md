@@ -27,6 +27,10 @@ The Fourier proof gives a strict inequality and shows that arbitrarily small dis
 
 对于关于**距离本身**的衰减指数函数的正混合，手稿直接从粒子间距出发证明等间距排列是唯一最优解。结论覆盖原文评注 2.6 所问的全部反幂势 $r^{-p}$（$p>0$），也可由此前对一维自旋畴的估计推出。[已有估计，式 (2.4)–(2.6)](https://doi.org/10.1007/s00220-013-1740-z)
 
+## Lean proof / 形式化证明
+
+Lean 4.28.0 verifies the four-site Gaussian counterexample in two ways. The Fourier argument proves the strict inequality for the specified sites and the Gaussian satisfies the conjecture’s squared-distance hypothesis. A direct real-space proof also gives $E(U)-E(X)>1/36$. Both proofs include every periodic image. 两条机器验证的证明覆盖完整无穷链的高斯反例。手稿中的局部不稳定性与里斯势结论尚未形式化。[Proofs and build instructions / 证明与复现说明](lean/README.md) · [Main theorems / 主定理](lean/Counterexample.lean)
+
 ## Numerical verification / 数值复核
 
 Run from the repository root with Python 3. The script uses only the standard library. 在仓库根目录运行下列命令即可，只需 Python 3 标准库。
