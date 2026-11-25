@@ -1,0 +1,111 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,top=22mm,bottom=23mm,left=25mm,right=25mm]{geometry}
+\usepackage{fontspec}
+\newfontfamily\creditfont{Noto Serif CJK SC}
+\setmainfont{Latin Modern Roman}
+\usepackage{amsmath,amssymb,amsthm,booktabs}
+\usepackage[unicode,hidelinks,pdftitle={A Gaussian counterexample and a Riesz bound for alternating particle chains}]{hyperref}
+\input{../metadata.tex}
+\hypersetup{pdfauthor={\ResearchAuthor; Corresponding author: \CorrespondingAuthor}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\csch}{\operatorname{csch}}
+\title{A Gaussian counterexample and a Riesz bound\\for alternating particle chains}
+\author{\ResearchAuthor\\[2pt]
+  \small Corresponding author: {\creditfont\CorrespondingAuthor}}
+\date{25 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For a one-dimensional, fixed-density chain with two alternating species, we exhibit a four-site periodic configuration with strictly lower energy than the equally spaced chain for a Gaussian potential. This contradicts Conjecture~2.7 of B\'etermin, Kn\"upfer and Nolte as stated in the journal version. The uniform chain also has a strictly descending displacement direction over a range of Gaussian scales. For positive mixtures of exponentials in the distance, we give a direct proof of an interval estimate implicit in prior sharp-interface bounds. It proves that the uniform chain uniquely minimizes energy. It applies to every inverse power $r^{-p}$ with $p>0$, the range proposed in Remark~2.6 of the same paper.
+\end{abstract}
+
+\section{Energy and two proposed statements}
+Fix an even number $N$, a period $L$, and positions $x_{i+N}=x_i+L$ with $x_i<x_{i+1}$ and $x_0=0$. The mean gap is $\ell=L/N$. Label the species by $\sigma_i=(-1)^i$. In the pair-potential convention $f_{11}=f_{22}=-f$, $f_{12}=f$ of \cite{BKN}, the energy per particle is
+\begin{equation}\label{eq:energy}
+ E_f(X)=-\frac1N\sum_{i=0}^{N-1}\sum_{j\in\Z,\ j\ne i}
+                 \sigma_i\sigma_j f(|x_i-x_j|).
+\end{equation}
+The sign makes the same-species energy negative. Equation~\eqref{eq:energy} follows the original directed-pair normalization. For conditionally convergent kernels we sum to the right and left separately in order of increasing distance from the reference particle. Write $U$ for $x_i=i\ell$.
+
+Conjecture~2.7 of \cite{BKN} asserts unique optimality of $U$ at every scale when $f(r)=F(r^2)$ and $F$ is completely monotone. The Gaussian below belongs to that class. Theorem~2.4 of \cite{BKN} establishes optimality for $f(r)=r^{-p}$ when $p\ge p_0\simeq0.655$. Remark~2.6 discusses extending this result to every $p>0$. We address both statements.
+
+\section{A four-site Gaussian counterexample}
+\begin{theorem}\label{thm:gauss}
+For $N=L=4$ and $f(r)=\exp(-r^2/4)$, the chain with positions $X=(0,3/2,2,5/2)$ in a period of length four satisfies $E_f(X)<E_f(U)$.
+\end{theorem}
+The gaps of $X$ are $3/2,1/2,1/2,3/2$. Thus the order of species is preserved, the density is one, and the smallest gap is strictly positive. Also $F(t)=e^{-t/4}$ satisfies $(-1)^kF^{(k)}(t)=4^{-k}e^{-t/4}>0$ for every integer $k\ge0$.
+
+\begin{proof}
+For $f_a(r)=e^{-ar^2}$ set $q=e^{-\pi^2/(16a)}$. The Fourier coefficients of its period-four sum are $(\sqrt{\pi/a}/4)q^{m^2}$, $m\in\Z$, by Gaussian Fourier transformation. Summing over all pairs and then omitting each particle's own term gives
+\begin{align}
+ E_{f_a}(Y)&=1-\frac{\sqrt{\pi/a}}{16}R(Y),\qquad
+ R(Y)=\sum_{m\in\Z}q^{m^2}|S_m(Y)|^2,\label{eq:R}\\
+ S_m(Y)&=\sum_{j=0}^3(-1)^j e^{i\pi m y_j/2}.\nonumber
+\end{align}
+Both the direct and Fourier sums converge absolutely. Uniform spacing gives $|S_m(U)|=4$ for $m\equiv2\pmod4$ and zero otherwise. For $X$, the modes $m=\pm1$ both have squared amplitude $2$. Thus
+\[
+ R(X)\ge4q,\qquad R(U)=32\sum_{k\ge0}q^{(4k+2)^2}
+          \le\frac{32q^4}{1-q^4}<4q\qquad(0<q\le1/4).
+\]
+The last inequality is $8q^3+q^4<1$. In particular $a=1/4$ gives $q=e^{-\pi^2/4}<1/4$. The negative coefficient of $R$ in \eqref{eq:R} proves the assertion.
+\end{proof}
+
+Direct summation gives $0.999633292158$ for $U$ and $0.924751872822$ for $X$. The inequalities above establish the result without decimal approximations. Repeating either four-site cell produces the same per-particle energies for every $N$ divisible by four. If a singular core is desired, adding $\varepsilon r^{-2}$ preserves the strict inequality for all sufficiently small $\varepsilon>0$ by linearity and absolute convergence. This perturbed potential is still completely monotone in the squared distance.
+
+\begin{proposition}\label{prop:instability}
+Let $Y_s=(0,1+s,2,3-s)$ with $0<|s|<1$. For all $0<q\le1/4$, $E_{f_a}(Y_s)<E_{f_a}(U)$.
+\end{proposition}
+\begin{proof}
+The pair of first harmonic modes gains $8q\sin^2(\pi s/2)\ge8q s^2$ in $R$. Only the modes $m\equiv 2\pmod4$ can lose weight relative to $U$. For such an $m$, $S_m(Y_s)=2+2\cos(\pi ms/2)$. Using $16-(2+2\cos t)^2\le8t^2$, the total loss is at most
+\[
+  4\pi^2 s^2\sum_{m\ge2}m^2q^{m^2}
+  \le \frac{16\pi^2 s^2q^4}{1-4q^2}.
+\]
+Here $m^2\le4^{m-1}$ and $m^2\ge2m$ for $m\ge2$. This upper bound is smaller than $8qs^2$ since $2\pi^2q^3<1-4q^2$ for $q\le1/4$. Equation~\eqref{eq:R} gives the claim.
+\end{proof}
+
+\section{Exponential kernels and all positive Riesz exponents}
+\begin{theorem}\label{thm:exp}
+Let $f_\kappa(r)=e^{-\kappa r}$, $\kappa>0$, and $d_i=x_{i+1}-x_i$. Then
+\begin{equation}\label{eq:bound}
+ E_{f_\kappa}(X)\ge1-\frac1N\sum_{i=0}^{N-1}
+         \tanh(\kappa d_i/2)\ge1-\tanh(\kappa\ell/2)
+         =E_{f_\kappa}(U).
+\end{equation}
+Equality with the uniform-chain energy forces all gaps equal. The same unique minimizer holds for mixtures $f(r)=\int_{(0,\infty)}e^{-\kappa r}\dd\mu(\kappa)$ with nonzero positive measure $\mu$ and $f(r)<\infty$ for every $r>0$.
+\end{theorem}
+\begin{proof}
+Periodize $f_\kappa$ as $K(t)=\sum_{n\in\Z}e^{-\kappa|t+nL|}$ and define
+$Q=\sum_{ij}\sigma_i\sigma_j K(x_i-x_j)$, with both site indices in one period.
+Removing the $N$ self terms gives $E_{f_\kappa}=1-Q/N$. On the circle of length $L$, the Green identity $(-\partial_t^2+\kappa^2)K=2\kappa\delta_0$ gives
+\[
+ Q=\sup_{u\in H^1_{\rm per}(0,L)}
+   \left\{2\sum_i\sigma_i u(x_i)-
+    \frac1{2\kappa}\int_0^L\bigl((u')^2+\kappa^2 u^2\bigr)\dd t\right\}.
+\]
+Indeed the maximizing field is $u(t)=\sum_i\sigma_i K(t-x_i)$, as follows by completing the square in the positive quadratic form. Given endpoint values $v,w$ on a gap of length $d$, minimize the integral penalty on that gap. Its minimizer solves $u''=\kappa^2 u$, and the minimum, including the factor $1/(2\kappa)$, is
+\[
+ \tfrac14\bigl[\tanh(\kappa d/2)(v+w)^2+
+             \coth(\kappa d/2)(v-w)^2\bigr].
+\]
+The linear term splits exactly over gaps as $\sum_i\sigma_i(u(x_i)-u(x_{i+1}))$. Maximizing each resulting expression independently bounds its value by $\tanh(\kappa d/2)$, by dropping the $(v+w)^2$ term and completing the square in $v-w$. Thus $Q\le\sum_i\tanh(\kappa d_i/2)$. Strict concavity of $\tanh$ on $(0,\infty)$ gives the second inequality of \eqref{eq:bound}. At uniform spacing the geometric sum is $Q/N=1+2\sum_{m\ge1}(-e^{-\kappa\ell})^m=\tanh(\kappa\ell/2)$.
+
+For the mixture, let $r_j$ be the distance to the $j$th neighbor in either one of the two directions. The pairs of summands $f(r_{2j-1})-f(r_{2j})$ are nonnegative and their sum is bounded by $f(r_1)$. This follows from monotonicity and $f(r)\to0$ as $r\to\infty$, the latter by dominated convergence. Apply Tonelli's theorem to these pairs to obtain $E_f=\int E_{f_\kappa}\dd\mu(\kappa)$ with finite energies. Strictness holds for every $\kappa>0$ if the gaps are unequal.
+\end{proof}
+
+In particular $r^{-p}=\Gamma(p)^{-1}\int_0^\infty e^{-\kappa r}\kappa^{p-1}\dd\kappa$ for all $p>0$. The unique minimum energy is $2\ell^{-p}\sum_{m\ge1}(-1)^{m+1}m^{-p}$. The pairing argument justifies this convention also for $0<p\le1$. The estimate distinguishes complete monotonicity in $r$ from the broader class obtained by imposing it in $r^2$.
+
+\paragraph{Relation to sharp-interface results.}
+Giuliani, Lebowitz and Lieb \cite{GLL} study exponential kernels for one-dimensional $\pm1$ fields and simple periodic minimizers at prescribed magnetization and jump count. The connection to the present estimate is explicit. Choose a periodic step field $h$ with $h'=2\sum_i\sigma_i\delta_{x_i}$. Integration by parts on the circle yields $4Q=2\kappa L-\kappa^2\langle h,K*h\rangle$, where convolution and inner product use ordinary integration over one period. The block estimate and explicit periodic-block energy of Buttà et al.~\cite{BEGM}, Eqs.~(2.4)--(2.6), give the exponential inequality in \eqref{eq:bound} after repeating a period, dividing by the number of repetitions, and taking the limit to remove the endpoint error per period. The Riesz conclusion is a corollary of this earlier sharp-interface inequality. Theorem~\ref{thm:exp} supplies a direct proof in particle variables. The Gaussian counterexample and the above bounds are presented as calculations for independent review.
+
+\begin{thebibliography}{9}
+\bibitem{BKN} L. B\'etermin, H. Kn\"upfer and F. Nolte, Note on crystallization for alternating particle chains, \emph{J. Stat. Phys.} \textbf{181}, 803--815 (2020). \href{https://doi.org/10.1007/s10955-020-02603-2}{doi:10.1007/s10955-020-02603-2}.
+\bibitem{GLL} A. Giuliani, J. L. Lebowitz and E. H. Lieb, Modulated phases of a one-dimensional sharp interface model in a magnetic field, \emph{Phys. Rev. B} \textbf{80}, 134420 (2009), Sec.~III. \href{https://doi.org/10.1103/PhysRevB.80.134420}{doi:10.1103/PhysRevB.80.134420}.
+\bibitem{BEGM} P. Buttà, R. Esposito, A. Giuliani and R. Marra, Froth-like minimizers of a non-local free energy functional with competing interactions, \emph{Commun. Math. Phys.} \textbf{323} (2013). \href{https://doi.org/10.1007/s00220-013-1740-z}{doi:10.1007/s00220-013-1740-z}.
+\end{thebibliography}
+\end{document}
