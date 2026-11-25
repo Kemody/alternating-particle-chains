@@ -1,157 +1,256 @@
-# The infimum of the Gaussian alternating-chain energy and the sharp cost of a minimum spacing
+# The energy infimum for alternating Gaussian chains and the sharp cost of a minimum spacing
 
-## Abstract
+**GPT-6.2 Astra**
 
-For a one-dimensional periodic cell with an even number of alternating sites, we determine the exact infimum of the periodized Gaussian energy in an explicit range of Gaussian widths. In the closure allowing coincident sites, all extremizers reduce, after cancellation, to two opposite signs half a period apart. With four or more distinct sites the infimum is unattained. A quantitative estimate describes near minimizers. If adjacent sites must be at least $h$ apart, the minimum exists and we compute the exact leading coefficient of its quadratic excess energy. Minimizers then separate into two nearly antipodal clusters with explicitly selected odd multiplicities. At the parameters of the repository's four-site counterexample the infimum is $0.849687099565508$ to fifteen decimal places.
+[English PDF](gaussian-infimum.pdf) · [中文 PDF](../zh/gaussian-infimum.pdf) · [中文全文](../zh/gaussian-infimum.md)
 
-## 1. Periodic cell and results
+**Abstract.** We consider a one-dimensional periodic chain with an even number of particles of alternating sign. For a fixed period and particle count, we determine the energy infimum in an explicit range of Gaussian widths and characterize all configurations attaining it when collisions are allowed. If neighboring particles must remain at least $h$ apart, the minimum energy exceeds this infimum by a term quadratic in $h$ as $h\downarrow0$. We compute its sharp coefficient. Every minimizing configuration then concentrates near two points half a period apart. Each cluster contains an odd number of particles, and the two odd counts are as close as possible.
 
-Fix $L,\alpha>0$ and an even $N=2m$. Write $0\le x_0<\cdots<x_{N-1}<L$, repeat the cell with $x_{j+N}=x_j+L$, and set $\sigma_j=(-1)^j$. All gaps include the wrap-around gap. Put
+**Keywords.** Alternating particle chains, periodized Gaussian potential, rearrangement on the circle, energy minimization
 
-$$
-G(x)=\sum_{k\in\mathbb Z}e^{-\alpha(x+kL)^2},\qquad
-Q=\sum_{i,j=0}^{N-1}\sigma_i\sigma_jG(x_i-x_j),\qquad E=1-Q/N.
-$$
+## 1. The periodic model and its energy infimum
 
-This is the directed energy per particle in Definition 2.1 of [1], with like-species potential $-e^{-\alpha r^2}$ and unlike-species potential $+e^{-\alpha r^2}$. The $1$ removes the single zero-distance self term of each site. Self images from all other cells are included. At a collision $E$ denotes the continuous extension of this same formula.
+Bétermin, Knüpfer and Nolte [1, Conjecture 2.7] conjectured that if $f(r)=F(r^2)$ with $F$ completely monotone, then for the interaction triple $\mathcal F=(-f,-f,f)$ the equidistant chain $e^\rho$ uniquely minimizes the energy in the periodic alternating class $\mathcal A_N^\rho$ at every density $\rho$, up to translation. The Gaussian corresponds to $F(t)=e^{-\alpha t}$ and satisfies this hypothesis. Yet the four-particle example in [5] has lower energy than the equidistant chain. We fix $N$ and $L=N/\rho$ and ask how low the energy can fall over the entire class, and what it costs to exclude collisions.
 
-Set $q=e^{-\pi^2/(\alpha L^2)}$ and $c=\sqrt{\pi/\alpha}/L$. We use the sufficient, dimensionless condition $q\le 1/3$. It holds for $\alpha=1/4,L=4$ and imposes no restriction on the even integer $N$ at fixed $L$. Increasing $N$ at fixed density changes $L$.
+For related work on equidistant ground states, high-density limits and competition between equidistant and bipartite structures, see [6–8]. Here the quadratic coefficient depends on the internal gaps of alternating clusters. A comparison restricted to equidistant or bipartite configurations does not determine it over the full admissible class.
 
-**Theorem 1 (infimum and equality).** For $q\le 1/3$,
+Fix $L,\alpha>0$ and an even particle count $N=2m$. Write $0\le x_0<\cdots<x_{N-1}<L$, extend by $x_{j+N}=x_j+L$, and set $\sigma_j=(-1)^j$. Like signs interact through the negative Gaussian and unlike signs through the positive Gaussian. Counting ordered pairs as in [1, Definition 2.1], define
 
 $$
-I_N=\inf E=1-\frac{2}{N}\,[G(0)-G(L/2)]
-    =1-\frac{8c}{N}\sum_{j\ge0}q^{(2j+1)^2}.
+G(x)=\sum_{k\in\mathbb Z}e^{-\alpha(x+kL)^2},\qquad Q=\sum_{i,j=0}^{N-1}\sigma_i\sigma_jG(x_i-x_j),\qquad E=1-\frac{Q}{N}.\tag{1}
 $$
 
-In the collision closure, equality holds exactly when the signed atomic measure reduces to $\delta_b-\delta_{b+L/2}$ for some $b$ modulo $L$. Neutral coincident pairs may occur at other locations. For $N=2$ the antipodal configuration attains the minimum. For $N\ge4$ no strictly ordered configuration attains it.
-
-**Theorem 2 (stability and a spacing constraint).** In angular coordinates $\theta=2\pi x/L$, let $A$ be the union of the arcs from each positive site to the following negative site. Let $d(A)$ be the least angular length of $A\triangle H$ over all semicircles $H$. With $\beta=q/3$,
+The constant $1$ removes each particle’s zero-distance self-interaction in its own cell. Images in other periods are included. Equation (1) extends continuously to coincident particles. Put
 
 $$
-E-I_N\ \ge\ \frac{16c\beta}{N}\left[1-\cos\!\left(\frac{d(A)}4\right)\right].
-\tag{1}
+s=\alpha L^2,\qquad q=e^{-\pi^2/s},\qquad c=\frac{\sqrt{\pi/\alpha}}{L},\qquad g(\theta)=G\!\left(\frac{L\theta}{2\pi}\right).\tag{2}
 $$
 
-For fixed $N\ge4,L,\alpha$ in this regime, let $M_N(h)$ denote the minimum over physical gaps at least $h$, where $0<h\le L/N$. Then
+**Theorem 1 (Infimum and equality).** Suppose $q\le1/3$. The energy per particle has infimum
 
 $$
-M_N(h)-I_N=\Theta_{N,L,\alpha}(h^2)\qquad(h\downarrow0).
-\tag{2}
+I_N=1-\frac{2}{N}\,[G(0)-G(L/2)]=1-\frac{8c}{N}\sum_{j=0}^{\infty}q^{(2j+1)^2}.\tag{3}
 $$
 
-In particular (2) controls the **optimal** constrained energy, allowing all sites to move. Section 4 gives the leading coefficient and the cluster sizes selected by the constraint.
+over strictly ordered configurations. In the collision closure, equality holds exactly when cancellation of opposite signs at each point leaves a positive and a negative particle half a period apart. Neutral coincident pairs may lie elsewhere in the cell. Among strictly ordered configurations the antipodal pair attains the minimum for $N=2$; the infimum is unattained for $N\ge4$.
 
-## 2. Reduction to a circle inequality
+## 2. Rearrangement on the circle and quantitative stability
 
-Write $g(\theta)=G(L\theta/(2\pi))$. Poisson summation gives the absolutely differentiable Fourier series (of every order)
-
-$$
-g(\theta)=c\left(1+2\sum_{n\ge1}q^{n^2}\cos(n\theta)\right).
-$$
-
-The distributional derivative of the indicator of $A$ is the signed site measure $\mu$. Integration by parts in both variables, with ordinary angular Lebesgue measure, gives
+Use angular coordinates $\theta=2\pi x/L$. Let $A$ be the union of the positively oriented arcs from each positive particle to the next negative particle. Write $|A|$ for angular length. The distributional derivative of $\mathbf1_A$ on the circle is the signed particle measure $\mu$. For a smooth, even periodic function $v$, integration by parts in each variable gives
 
 $$
-Q_g(A)=\iint g(s-t)\,d\mu(s)d\mu(t)
-      =\int_A\int_A[-g''(s-t)]\,ds\,dt.
-\tag{3}
+Q_v(A):=\iint v(u-w)\,d\mu(u)\,d\mu(w)=\int_A\!\int_A[-v''(u-w)]\,du\,dw.\tag{4}
 $$
 
-The formula extends continuously to collisions; zero-length arcs vanish and adjacent occupied arcs may merge. For any single arc of angular length $a$ its two endpoints give $Q_g=2[g(0)-g(a)]$.
+If $A$ is a single arc of length $a$, its endpoints carry opposite unit masses, so $Q_v(A)=2[v(0)-v(a)]$. At collisions, zero-length arcs disappear or adjacent arcs merge. The same identity (4) continues to hold.
 
-We record the comparison used twice below. For an even smooth periodic function $v$, suppose both $v$ and $-v''$ are nonincreasing on $[0,\pi]$. With $|A|$ fixed, the circle rearrangement inequality applied to (3) gives $Q_v(A)\le Q_v(J)$ for a single arc $J$ of the same length [2, Theorem 4.1]. The theorem requires a nonnegative kernel. Add a constant to $-v''$ to enforce this: both integrals increase by the same constant times $|A|^2$. Now $Q_v(J)=2[v(0)-v(|A|)]$ is at most $2[v(0)-v(\pi)]$ by symmetry and monotonicity. Thus a semicircle maximizes $Q_v$ even when the length of $A$ varies.
+**Lemma 1 (Rearrangement of the signed interaction).** Let $v$ be smooth, even and $2\pi$-periodic. Suppose both $v$ and $-v''$ are nonincreasing on $[0,\pi]$. For any finite union of arcs $A$ and any semicircle $H$, one has $Q_v(A)\le Q_v(H)$.
 
-## 3. Separating the first Fourier mode
-
-Subtract a fraction of the first mode and put $v(\theta)=g(\theta)-2c\beta\cos\theta$. To apply the comparison to $v$, it suffices to show
+**Proof.** Choose $C=\max\{0,\max v''\}$. Then $K=C-v''$ is nonnegative, even and nonincreasing on the half-period. The circle rearrangement inequality [2, Theorem 4.1] applies to this kernel and two nonnegative functions. Take both functions to be $\mathbf1_A$. Their symmetric decreasing rearrangement is the indicator of an arc $J$ with $|J|=|A|$. Hence
 
 $$
-R(q)=\sum_{n\ge2}n^4q^{n^2-1}<1-\beta/q.
+\int_A\!\int_A K(u-w)\,du\,dw\ \le\ \int_J\!\int_J K(u-w)\,du\,dw.
 $$
 
-Indeed $|\sin(n\theta)|\le n\sin\theta$ for $0<\theta<\pi$. The contribution of the higher modes to the derivative of $-v''$ has magnitude at most $2cqR(q)\sin\theta$. For $v'$ the same bound holds with $n^2$ in place of $n^4$. In both derivatives the first mode contributes $-2c(q-\beta)\sin\theta$.
+Subtract $C|A|^2$ from both sides. This yields $Q_v(A)\le Q_v(J)$. By periodic symmetry and monotonicity, $Q_v(J)=2[v(0)-v(|A|)]\le2[v(0)-v(\pi)]=Q_v(H)$. $\square$
 
-For $q\le1/3$, the first term of $R$ is at most $16/27$ and successive term ratios are at most $(3/2)^4(1/3)^5=1/48$. Hence $R\le(16/27)(48/47)<2/3$. This proves the comparison for $v$ with $\beta=q/3$. The cutoff is sufficient; no optimal threshold is asserted.
+### The first Fourier mode and monotonicity of the residual kernel
 
-Set $z=\int_A e^{i\theta}\,d\theta$. The subtracted mode contributes exactly $2c\beta |z|^2$ to (3). The modulus for a semicircle is $2$. Since the residual $Q_v$ also has a semicircle as a maximizer,
-
-$$
-Q_g(H)-Q_g(A)\ge 2c\beta(4-|z|^2)
-\quad\text{for every semicircle }H.
-\tag{4}
-$$
-
-Take $\phi=\arg z$ (any $\phi$ if $z=0$) and $H_\phi=\{\cos(\theta-\phi)>0\}$. Then
+Poisson summation gives $g(\theta)=c[1+2\sum_{n\ge1}q^{n^2}\cos(n\theta)]$, with absolute convergence after differentiation to any order. Set $\beta=q/3$ to retain an explicit positive margin, without optimizing this choice, and put $v(\theta)=g(\theta)-2c\beta\cos\theta$. For $0<\theta<\pi$, the bound $|\sin(n\theta)|\le n\sin\theta$ controls the higher modes in both $v'$ and $(-v'')'$ by $2cqR(q)\sin\theta$, where
 
 $$
-2-|z|=\int_{A\triangle H_\phi}|\cos(\theta-\phi)|\,d\theta.
+R(q)=\sum_{n=2}^{\infty}n^4q^{n^2-1}\le\frac{16}{27}\cdot\frac{48}{47}<\frac23.\tag{5}
 $$
 
-Among sets of length $s$, this last integrand has its smallest integral on the neighborhoods of its two zeros of half-width $s/4$. The integral there is $4[1-\cos(s/4)]$, by direct integration on the four flanks. Taking $s=|A\triangle H_\phi|\ge d(A)$ and using $4-|z|^2\ge2(2-|z|)$ proves (1).
-
-Equality requires $A$ to be a semicircle up to null sets, and every such $A$ gives equality. Equivalently its distributional derivative is exactly an antipodal dipole (the reverse implication follows because two primitives with the same derivative differ by a constant). This gives the formula and equality classification of Theorem 1. Distinct sites give exactly $N$ jumps. For any even $N$, a signed dipole can be approached by leaving a positive site at zero and taking the remaining $N-1$ sites, with signs $-,+,\ldots,-$, in a shrinking neighborhood of $\pi$. This proves sharpness within the original admissible class. Inequality (1) also shows that at fixed parameters every minimizing sequence approaches the family of semicircle indicators in $L^1$, up to rotation.
-
-## 4. The sharp cost of excluding collisions
-
-Put $\eta=2\pi h/L$ and $D=g''(\pi)-g''(0)=4c\sum_{n>0,\ n\ {\rm odd}}n^2q^{n^2}$. Both $D>0$ and $g''(\pi)>0$; for the latter, the first Fourier term dominates the remaining second derivatives by the same $R(q)<1$ bound as above. Fix $L,N,\alpha$ throughout the limit.
-
-**Theorem 3 (sharp expansion).** For even $N=2m\ge4$,
+Indeed, the first term is at most $16/27$ and successive term ratios are at most $(3/2)^4(1/3)^5=1/48$. The first mode in both derivatives is $-2c(q-\beta)\sin\theta$, so Lemma 1 applies to $v$. Put $z=\int_A e^{i\theta}\,d\theta$. The mode we set aside contributes $2c\beta|z|^2$ to $Q_g(A)$, and a semicircle has $|z|=2$. Thus
 
 $$
-M_N(h)=I_N+\frac{\lfloor m^2/2\rfloor}{N}\,D\,\eta^2
-       +O_{N,L,\alpha}(\eta^4).
-\tag{5}
+Q_g(H)-Q_g(A)\ge 2c\beta(4-|z|^2).\tag{6}
 $$
 
-For all sufficiently small $h$, a minimizing cell consists, after rotation, of two groups within $O(\eta)$ in angular distance of antipodal points. Their sizes are $2k+1$ and $2l+1$, where $k+l=m-1$ and $|k-l|\le1$. This describes the multiplicities and the leading energy; it leaves higher-order site positions undetermined.
-
-**Existence and a trial bound.** Pin one site by translation. The simplex of cyclic gaps at least $h$ is compact and nonempty for $h\le L/N$, so the minimum exists. Place one positive site at zero and a symmetric, alternating cluster of $N-1$ sites spaced by $\eta$ about $\pi$, starting and ending with a negative site. Its end gaps are $\pi-(m-1)\eta\ge\eta$. Its energy is a smooth even function of $\eta$, equal to $I_N$ at zero. Thus $0\le M_N(h)-I_N=O(\eta^2)$.
-
-**Localization of every site.** Rotate a minimizing configuration so that the semicircle selected by the first mode in Section 3 is $H=(0,\pi)$. From (4) and the identity for $2-|z|$ we obtain
+**Theorem 2 (Stability relative to a semicircle).** Let $d(A)=\min_H|A\triangle H|$, where $H$ ranges over semicircles and $\triangle$ denotes symmetric difference. Under the assumptions of Theorem 1,
 
 $$
-\int_{A\triangle H}|\sin\theta|\,d\theta=O(\eta^2).
-\tag{6}
+E-I_N\ge\frac{16c\beta}{N}\left[1-\cos\!\left(\frac{d(A)}4\right)\right].\tag{7}
 $$
 
-Consider a site at angular distance $r\in[\eta,\pi/2]$ from the nearer endpoint. Its two neighboring gaps are both at least $\eta$ long. On one of the two adjacent intervals of length $\eta/2$, the indicators of $A$ and $H$ disagree throughout: $A$ jumps at the site and $H$ is constant there. On this interval $|\sin\theta|\ge 2(r-\eta/2)/\pi$ by the distance-to-the-nearest-endpoint bound. By (6), $r=O(\eta)$, uniformly for all sites; sites with $r<\eta$ already satisfy the claim. Away from the two groups $A$ is constant on each of the two complementary bulk arcs. Those constant values match $H$ for small $\eta$, since a mismatch on, for example, $[\pi/4,3\pi/4]$ or its antipode would contradict (6). The jumps in the group near zero therefore start and end positive and have net sign $+1$. The signs near $\pi$ start and end negative and have net sign $-1$. Their counts have the asserted odd form with $k+l=m-1$.
-
-**A signed variance identity.** In either group normalize its signs to start with $+1$. For its ordered offsets $u_0,\ldots,u_{2k}$ from the group endpoint, define $P=\sum_i(-1)^i u_i$ and $V=\sum_i(-1)^iu_i^2-P^2$. The sum of the signs is one, so $V$ is invariant under translating all offsets. Write its successive gaps as $a_1,b_1,\ldots,a_k,b_k$. With $u_0=0$, $P=\sum_j b_j$ and subtraction of $P^2$ gives
+**Proof of Theorems 1 and 2.** Set $\phi=\arg z$, with any choice if $z=0$, and write $H_\phi=\{\cos(\theta-\phi)>0\}$. Taking the real part of $e^{-i\phi}z$ gives
 
 $$
-V=2\sum_{j=1}^k b_j\sum_{i=1}^j a_i
-  \ \ge\ k(k+1)\eta^2 .
-\tag{7}
+2-|z|=\int_{A\triangle H_\phi}|\cos(\theta-\phi)|\,d\theta.\tag{8}
 $$
 
-Indeed $\sum_i(-1)^i u_i^2=\sum_j(2u_{2j-1}b_j+b_j^2)$. Formula (7) includes a singleton, for which $V=0$.
+Among sets of length $a$, the integral on the right is smallest on the four intervals of width $a/4$ flanking the two zeros. Its value there is $4[1-\cos(a/4)]$. Take $a=|A\triangle H_\phi|\ge d(A)$. Since $4-|z|^2\ge2(2-|z|)$, (6) implies (7) with semicircle energy $1-2[g(0)-g(\pi)]/N$.
 
-**Expansion and optimization.** Use indices $0,\pi$ for the quantities $P,V$ of the two normalized groups. Taylor expand the two within-group sums in $Q$ about zero and the between-group sum about $\pi$. The odd derivatives at both centers vanish. Localization bounds every offset by a constant times $\eta$, so the error is uniformly $O(\eta^4)$ over minimizers. Each within-group sum contributes $g(0)+g''(0)V$. The cross term contributes $-2g(\pi)-g''(\pi)[V_0+V_\pi+(P_0-P_\pi)^2]$. Hence
+The Fourier series of the semicircle energy gives (3). If this energy is attained, then $Q_g(H)-Q_g(A)=0$. The residual-kernel deficit and the first-mode deficit $2c\beta(4-|z|^2)$ are both nonnegative, so both vanish. Since $\beta>0$, we obtain $|z|=2$. The integral in (8) is then zero, and its weight vanishes only at the two endpoints. Thus $|A\triangle H_\phi|=0$. The two indicators have the same distributional derivative, an antipodal pair of opposite unit masses. Conversely, if the derivatives agree, the indicators differ by a constant; since both the semicircle and its complement have positive measure, this constant is zero. Strictly ordered particles give $N$ jumps. For any even $N$, fix a positive particle at $0$ and let the other $N-1$ alternating particles approach $\pi$ while remaining distinct. Their energies approach (3). $\square$
+
+## 3. Minimum energy under a spacing constraint
+
+Fix $N=2m\ge4$, $L$ and $\alpha$, with $q\le1/3$. Impose a lower bound $0<h\le L/N$ on every neighboring gap, including the gap across the period boundary. Denote the minimum energy by $M_N(h)$ and put
 
 $$
-N(E-I_N)=D(V_0+V_\pi)+g''(\pi)(P_0-P_\pi)^2+O(\eta^4).
-\tag{8}
+\eta=\frac{2\pi h}{L},\qquad D=g''(\pi)-g''(0)=4c\sum_{\substack{n\ge1\\n\ \mathrm{odd}}}n^2q^{n^2}>0.\tag{9}
 $$
 
-The minimum of $k(k+1)+l(l+1)$ for nonnegative integers $k+l=m-1$ is $\lfloor m^2/2\rfloor$, and occurs precisely at $|k-l|\le1$. Equations (7)–(8) give the required lower bound. For an upper bound choose these balanced counts, center the two odd groups at $0,\pi$ and set every internal gap equal to $\eta$. Both $P$'s vanish by symmetry and both variances attain (7). The gaps between groups are $\pi-(m-1)\eta\ge\eta$. Applying the same Taylor expansion proves (5). Any unbalanced integer split costs a fixed positive multiple of $\eta^2$ more, which the uniform fourth-order remainder cannot offset for small $\eta$. This proves the count statement and (2).
+**Theorem 3 (Small-spacing asymptotics and cluster sizes).** As $h\downarrow0$,
 
-For $N=4$ the coefficient of physical $h^2$ is $D(2\pi/L)^2/2$. For $N=6$ the balanced $3+3$ split has coefficient $4D(2\pi/L)^2/6$; a $1+5$ split with tight symmetric groups has coefficient $6D(2\pi/L)^2/6$. Thus even an admissible family reaching the unconstrained infimum can have the wrong leading coefficient once a minimum gap is imposed.
+$$
+M_N(h)=I_N+\frac{\lfloor m^2/2\rfloor}{N}D\,\eta^2+O_{N,L,\alpha}(\eta^4).\tag{10}
+$$
 
-## 5. Numerical example and scope
+For sufficiently small $h$, every minimizer can be rotated so that its particles lie in two clusters within angular distance $O(\eta)$ of a pair of antipodal points. The clusters contain $2k+1$ and $2l+1$ particles, with $k+l=m-1$ and $|k-l|\le1$.
 
-At $(N,L,\alpha)=(4,4,1/4)$ the two original cells have energies $0.999633292157728$ and $0.924751872822186$. The limit of $(0,2-h,2,2+h)$ is $I_4=0.849687099565508$ (rounded). Several different coordinate limits may give the same signed dipole, because a neutral coincident pair can cancel anywhere in the cell. For finite positive $h$, inequality (2) addresses the best four-site placement, including nonsymmetric trials.
+### Existence and a trial upper bound
 
-For the same $L,\alpha$, six sites illustrate the selection effect. The sharp coefficient of physical $h^2$ is 0.49450963 to eight decimals. Putting a singleton opposite a tight five-site cluster gives 0.74176445. On grids of 16, 24 and 32 equally spaced nodes, exhaustive enumeration gives minima 0.927980536870, 0.912984112405 and 0.907345330218, respectively. Each equals the grid energy of the symmetric $3+3$ trial to the numerical precision used. These are finite-grid checks; (5) follows from the continuous estimates.
+Fix one particle by translation. The admissible cyclic gaps form a nonempty compact simplex, so the continuous energy attains its minimum. Place one positive particle at $0$ and the remaining $N-1$ particles symmetrically about $\pi$ with spacing $\eta$. The two gaps between the clusters are $\pi-(m-1)\eta\ge\eta$. Each angle has the form $\theta_i=b_i+t_i\eta$, with $b_i\in\{0,\pi\}$ and $|t_i|\le m-1$. Since $g'(0)=g'(\pi)=0$, a second-order Taylor bound on each ordered pair gives
 
-The width condition has mathematical content. At fixed $N\ge4,L$ and $\alpha\to\infty$, the equidistant energy tends to zero: all non-self distances are bounded away from zero and the Gaussian image sums decay. Meanwhile the antipodal collision energy tends to $1-2/N>0$. Thus the same limit configuration cannot minimize for all widths. The behavior between the two regimes is left open.
+$$
+0\le M_N(h)-I_N\le C_{\mathrm{tr}}\eta^2,\qquad C_{\mathrm{tr}}=2N(m-1)^2\|g''\|_\infty .\tag{11}
+$$
 
-The companion script checks direct image sums against Fourier sums, tests the stability estimate and inspects the spacing asymptotics. The inequalities above constitute the proof.
+### 3.1. Uniform localization of every particle
 
-## References and relation to earlier work
+**Lemma 2 (A localization constant).** Set $B=NC_{\mathrm{tr}}/(4c\beta)$ and $C_0=\max\{1,\tfrac12+\pi B\}$. Every minimizer can be rotated so that all its particles lie within angular distance $C_0\eta$ of $\{0,\pi\}$.
 
-1. L. Bétermin, H. Knüpfer and F. Nolte, *Note on crystallization for alternating particle chains*, J. Stat. Phys. 181 (2020), 803–815. The periodic cell, energy normalization and conjecture are from this paper. [DOI](https://doi.org/10.1007/s10955-020-02603-2)
-2. X. Cabré, G. Csató and A. Mas, *Periodic solutions to integro-differential equations: variational formulation, symmetry, and regularity*, Theorem 4.1. We use the classical circle rearrangement inequality as stated there. Its historical sources include Baernstein–Taylor and Friedberg–Luttinger. [Article](https://doi.org/10.1080/03605302.2024.2441851)
-3. M. Christ and M. Iliopoulou, *Inequalities of Riesz–Sobolev type for compact connected Abelian groups*. Quantitative stability of rearrangements on groups has a substantial prior literature. The first-mode bound here gives an explicit constant for this Gaussian energy and a freely varying occupied length. [arXiv](https://arxiv.org/abs/1808.08368)
-4. P. Buttà, R. Esposito, A. Giuliani and R. Marra, *Froth-like minimizers of a nonlocal free energy functional with competing interactions*. The upstream manuscript relates its exponential-in-distance estimate to block bounds in this work. Here the differentiated periodized Gaussian is the kernel used in the circle comparison. [DOI](https://doi.org/10.1007/s00220-013-1740-z)
-5. *A Gaussian counterexample and a Riesz bound for alternating particle chains*, repository manuscript. The four-site example and its local instability motivate the global minimization question here. [Revision examined](https://github.com/xiujiang4/alternating-particle-chains/tree/a48fe4c2623a29dd45edd227410a07baba400250)
+**Proof.** Rotate the semicircle selected in (8) to $H=(0,\pi)$. Equations (6), (8) and (11), together with $4-|z|^2\ge2(2-|z|)$, give
+
+$$
+\int_{A\triangle H}|\sin\theta|\,d\theta\ \le\ B\eta^2.\tag{12}
+$$
+
+Consider any particle and let $r$ be its angular distance to the nearer endpoint. If $r<\eta$, the claim follows. If $\eta\le r\le\pi/2$, take an interval of length $\eta/2$ on each side of the particle. Neither interval contains another particle in its interior or crosses an endpoint of $H$. At the particle, $\mathbf1_A$ jumps while $\mathbf1_H$ is constant. One of the two intervals therefore belongs to the symmetric difference, up to endpoints.
+
+Every point in that interval is at least $r-\eta/2$ from the nearer endpoint. Since $\sin u\ge2u/\pi$ for $0\le u\le\pi/2$, its contribution to (12) is at least $(\eta/\pi)(r-\eta/2)$. Comparison with the upper bound gives $r\le(\tfrac12+\pi B)\eta$. This constant is uniform over all particles and minimizers. $\square$
+
+Choose $\eta$ so that $C_0\eta<\pi/4$ and $B\eta^2<\sqrt2$. The indicator $\mathbf1_A$ is constant on each of the two long arcs outside the clusters. If either value differed from $\mathbf1_H$, the whole of $[\pi/4,3\pi/4]$ or its antipodal arc would lie in the symmetric difference. The integral of the weight on either arc is $\sqrt2$, contradicting (12). Thus the cluster near $0$ has net sign $+1$, and that near $\pi$ has net sign $-1$. Alternation forces both counts to be odd.
+
+### 3.2. The signed second moment of an alternating cluster
+
+Normalize the signs in each odd cluster to $\epsilon_i=(-1)^i$. Write $u_0,\ldots,u_{2k}$ for the ordered offsets from the corresponding endpoint and define
+
+$$
+P=\sum_{i=0}^{2k}\epsilon_i u_i,\qquad V=\sum_{i=0}^{2k}\epsilon_i u_i^2-P^2.\tag{13}
+$$
+
+Since $\sum_i\epsilon_i=1$, translating the entire cluster leaves $V$ invariant. Set $u_0=0$ and write its successive gaps as $a_1,b_1,\ldots,a_k,b_k$. Then $P=\sum_j b_j$. Subtracting adjacent squares gives $\sum_i\epsilon_i u_i^2=\sum_j(2u_{2j-1}b_j+b_j^2)$. Substitution into (13) and cancellation of the terms from $P^2$ yield
+
+$$
+V=2\sum_{j=1}^k b_j\sum_{i=1}^j a_i\ \ge\ k(k+1)\eta^2.\tag{14}
+$$
+
+Equality holds when all internal gaps equal $\eta$. For a singleton both sides vanish.
+
+### 3.3. A uniform fourth-order remainder and selection of cluster sizes
+
+**Proof of Theorem 3, continued.** Use subscripts $0$ and $\pi$ for the two clusters. Normalize their internal signs as in (13), restoring the opposite net signs in the cross interaction. Set $C_*=\max\{C_0,m-1\}$. By Lemma 2, every offset of every minimizer satisfies $|u_i|\le C_*\eta$. The symmetric trials used below satisfy the same bound.
+
+Each ordered pair contributes a signed copy of $g(b+t)$ at $b=0$ or $\pi$ modulo the period, with $|t|\le2C_*\eta$. Odd derivatives vanish at both centers. With $K_4=\|g^{(4)}\|_\infty$, Taylor’s theorem gives
+
+$$
+\left|g(b+t)-g(b)-\tfrac12 g''(b)t^2\right|\le \frac{K_4}{24}(2C_*\eta)^4.\tag{15}
+$$
+
+Within a cluster, $\sum_{i,j}\epsilon_i\epsilon_j(u_i-u_j)^2=2V$. The corresponding sum between normalized clusters is $V_0+V_\pi+(P_0-P_\pi)^2$. Counting both directions and using $NE=N-Q$, we obtain
+
+$$
+\begin{aligned}N(E-I_N)&=D(V_0+V_\pi)+g''(\pi)(P_0-P_\pi)^2+\mathcal R,\\ |\mathcal R|&\le C_R\eta^4,\qquad C_R=\frac{N^2K_4}{24}(2C_*)^4.\end{aligned}\tag{16}
+$$
+
+There are at most $N^2$ ordered pairs, so $C_R$ is independent of the minimizer and of its cluster counts. The Fourier series and (5) give $g''(\pi)\ge2cq[1-R(q)]>0$. Equations (14) and (16) now imply
+
+$$
+N(E-I_N)\ge D[k(k+1)+l(l+1)]\eta^2-C_R\eta^4 .
+$$
+
+For nonnegative integers $k+l=m-1$ with $k\ge l+2$, replacing $(k,l)$ by $(k-1,l+1)$ reduces the bracket by $2(k-l-1)$. Its minimum is therefore $\lfloor m^2/2\rfloor$, attained precisely when $|k-l|\le1$.
+
+Choose these counts and center the clusters symmetrically at $0$ and $\pi$, with all internal gaps equal to $\eta$. Both first moments vanish, (14) is an equality in each cluster, and the two outer gaps $\pi-(m-1)\eta$ are admissible. Applying (16) gives the matching upper bound and proves (10). An unbalanced split increases the quadratic coefficient of $N(E-I_N)$ by at least $2D$, so it cannot minimize when $2D\eta^2>2C_R\eta^4$. Combining this condition with feasibility and the two localization conditions after Lemma 2 gives the sufficient threshold
+
+$$
+h_0=\frac{L}{2\pi}\min\!\left\{\frac{2\pi}{N},\,\frac{\pi}{4C_0},\,\sqrt{\frac{\sqrt 2}{B}},\,\sqrt{\frac{D}{C_R}}\right\}.
+$$
+
+The stated cluster counts hold for $0<h<h_0$. $\square$
+
+For $N=L=4$ and $\alpha=1/4$, this gives $h_0\approx1.19263\times10^{-5}$. This sufficient bound comes from uniform remainder estimates and need not be the spacing at which the cluster pattern changes.
+
+### Four particles versus six
+
+With four particles the only optimal split is $1+3$. With six particles both $1+5$ and $3+3$ can collapse to the same antipodal dipole, but their tightly spaced symmetric trials have quadratic coefficients in the ratio $6:4$. The collision-limit equality classification alone does not select between them.
+
+## 4. Numerical checks and the range of validity
+
+At $L=4$, $\alpha=1/4$, the equidistant four-particle cell $(0,1,2,3)$ and the example $(0,1.5,2,2.5)$ in [5] have energies $0.999633292157728$ and $0.924751872822186$, respectively. Equation (3) gives $I_4=0.849687099565508$. Table 1 compares the coefficient in physical distance $h$ with the energy quotient of the symmetric trial.
+
+**Table 1. Quadratic energy cost and finite-spacing check**
+
+| $N$ | Cluster sizes | Theoretical coefficient | Finite-spacing quotient |
+|--:|:--:|--:|--:|
+| 4 | 1 + 3 | 0.37088222 | 0.37088192 |
+| 6 | 3 + 3 | 0.49450963 | 0.49450892 |
+| 8 | 3 + 5 | 0.74176445 | 0.74176200 |
+| 10 | 5 + 5 | 0.89011734 | 0.89011313 |
+
+The coefficient is $\lfloor m^2/2\rfloor D(2\pi/L)^2/N$. The last column gives $(E-I_N)/h^2$ at $h=0.001$ for the symmetric trial.
+
+Exhaustive six-particle searches on grids of $16,24,32$ equispaced nodes give minima $0.927980536870$, $0.912984112405$ and $0.907345330218$, respectively. Each agrees with the symmetric $3+3$ trial on that grid. The repository script also compares real-space and Fourier sums and checks (7) on 675 fixed-seed random configurations.
+
+### Competing configurations outside the width range
+
+The condition $q\le1/3$ is equivalent to $s=\alpha L^2\le\pi^2/\log3\approx8.984$. Write $E_{\rm dip}^{(N)}=1-2[G(0)-G(L/2)]/N$ for the antipodal dipole energy, which remains defined outside this range. At $L=1$ and $s=22$, consider the six-particle cell in the collision closure
+
+$$
+X=(0,\tfrac18,\tfrac18,\tfrac14,\tfrac12,\tfrac34).\tag{17}
+$$
+
+The opposite signs at $1/8$ cancel. The remaining signed measure is that of four equidistant particles. Denoting their energy by $E_{\rm eq}^{(4)}$, the normalization in (1) gives
+
+$$
+E(X)=1-\tfrac46(1-E_{\rm eq}^{(4)})\approx0.665009396 < 0.669391181\approx E_{\rm dip}^{(6)}.\tag{18}
+$$
+
+Both values follow directly from (1). Truncation to $|k|\le3$, with $|x_i-x_j|\le1$, incurs an error per particle of at most $12e^{-198}/(1-e^{-154})$. By continuity, separating the coincident pair slightly preserves the strict inequality. Thus the dipole has lost global optimality at $s=22$. The competitor does not establish the six-particle global minimum.
+
+For $N=4$ we fixed a positive particle at zero on a unit-period grid of 120 nodes and enumerated the other three positions in nondecreasing order, allowing collisions. At $s=18$ the grid minimum and the dipole energy both equal $0.5111089813$ to the digits shown. At $s=22$ the equidistant energy $0.4975140939$ is below the dipole energy $0.5040867712$. The energy difference of these two trials has opposite signs at $s=21.7707$ and $21.7709$. Bisection gives a crossing at $s\approx21.77085$; another configuration may win earlier. At fixed $N\ge4,L$, as $\alpha\to\infty$, the equidistant energy tends to zero while the dipole energy tends to $1-2/N>0$.
+
+Inserting a coincident pair of opposite signs in an even cell preserves its signed measure and $Q$. If $\widetilde E$ denotes the energy after insertion, then
+
+$$
+\widetilde E-E_{\rm dip}^{(N+2)}=\frac{N}{N+2}\big(E-E_{\rm dip}^{(N)}\big).\tag{19}
+$$
+
+Let $S_N$ be the set of parameters $s$ at which some configuration has energy strictly below the dipole energy, and put $s_*(N)=\inf S_N$. By (19), $S_N\subseteq S_{N+2}$, hence $s_*(N+2)\le s_*(N)$. This does not require the sets to be intervals or imply strict monotonicity.
+
+## 5. Conclusions
+
+For $q\le1/3$, unconstrained minimizers in the collision closure can have neutral pairs at different points of the cell. Once a small positive minimum gap is imposed, Theorem 3 localizes every particle near two antipodal points and fixes the two cluster sizes. Equation (16) explains the selection. Each cluster has a lower bound on its signed second moment that depends on its size, and the relative displacement of the clusters contributes a nonnegative term. A single family of trial configurations attains both moment bounds and makes the displacement term vanish.
+
+The period, particle count and Gaussian parameter are fixed throughout, and signs alternate strictly. The constants in (15)–(16) depend on these parameters, so these estimates do not give a thermodynamic limit at fixed density. Higher-order corrections to particle positions at positive spacing, the critical widths for different counts and the classification of minimizers outside the proven range remain open.
+
+Quantitative rearrangement inequalities on groups are studied more generally in [3]. Here retaining part of the first Fourier mode yields an explicit constant even as the occupied length $|A|$ varies. For one-dimensional block minimization with competing interactions, see [4]. The small-spacing coefficient here comes from the signed second moment in (14).
+
+### Numerical reproducibility
+
+The standard-library script verify_gaussian_infimum.py accompanying [5], PR #1, reproduces Table 1 and the three six-particle grid minima. To check the four-particle enumeration independently, tabulate the periodic kernel (1) at grid differences, set $x_0=0$ and enumerate $x_j=i_j/120$ with $0\le i_1\le i_2\le i_3<120$. To reproduce (18), substitute the six positions in (17) directly into (1). These calculations check the values; the proofs of Theorems 1–3 are analytical.
+
+### Research note
+
+AI tools were used in the derivations, preparation of the manuscript and numerical checks. Theorems 1–3 have not undergone independent peer review or formal verification.
+
+## References
+
+[1] Bétermin L, Knüpfer H, Nolte F. Note on crystallization for alternating particle chains. Journal of Statistical Physics, 2020, 181: 803–815. DOI: [10.1007/s10955-020-02603-2](https://doi.org/10.1007/s10955-020-02603-2).
+
+[2] Cabré X, Csató G, Mas A. Periodic solutions to integro-differential equations: variational formulation, symmetry, and regularity. Communications in Partial Differential Equations, 2025, 50(1–2). DOI: [10.1080/03605302.2024.2441851](https://doi.org/10.1080/03605302.2024.2441851).
+
+[3] Christ M, Iliopoulou M. Inequalities of Riesz–Sobolev type for compact connected Abelian groups. arXiv:1808.08368, 2018.
+
+[4] Buttà P, Esposito R, Giuliani A, Marra R. Froth-like minimizers of a nonlocal free energy functional with competing interactions. Communications in Mathematical Physics. DOI: [10.1007/s00220-013-1740-z](https://doi.org/10.1007/s00220-013-1740-z).
+
+[5] A Gaussian counterexample and a Riesz bound for alternating particle chains. Repository manuscript, revision a48fe4c. The proof and numerical script accompanying this paper are in [PR #1](https://github.com/xiujiang4/alternating-particle-chains/pull/1).
+
+[6] Ventevogel W J. On the configuration of a one-dimensional system of interacting particles with minimum potential energy per particle. Physica A, 1978, 92: 343–361.
+
+[7] Sütő A. Ground state at high density. Communications in Mathematical Physics, 2011, 305: 657–710.
+
+[8] Bétermin L, Šamaj L, Travěnec I. Equidistant versus bipartite ground states for 1D classical fluids at fixed particle density. Analysis and Mathematical Physics, 2025, 15: 88. DOI: [10.1007/s13324-025-01076-4](https://doi.org/10.1007/s13324-025-01076-4).
